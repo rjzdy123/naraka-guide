@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="siteTitle">永劫无间教学社区 - NARAKA Teaching Community</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts: Noto Serif SC for Chinese calligraphy feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚔️</span>
+        <span class="logo-text" data-i18n="logoText">永劫无间教学社区</span>
+      </div>
+      <nav class="nav" id="mainNav">
+        <button class="nav-btn active" data-tab="home" data-i18n="navHome">首页</button>
+        <button class="nav-btn" data-tab="intro" data-i18n="navIntro">游戏介绍</button>
+        <button class="nav-btn" data-tab="basic" data-i18n="navBasic">基础教程</button>
+        <button class="nav-btn" data-tab="advanced" data-i18n="navAdvanced">进阶教程</button>
+        <button class="nav-btn" data-tab="combos" data-i18n="navCombos">连招教程</button>
+        <button class="nav-btn" data-tab="souljades" data-i18n="navSouljades">魂玉图鉴</button>
+        <button class="nav-btn" data-tab="community" data-i18n="navCommunity">社区</button>
+      </nav>
+      <div class="header-right">
+        <button class="lang-toggle" id="langToggle" title="Switch Language / 切换语言">
+          <span class="lang-zh">中</span>
+          <span class="lang-divider">/</span>
+          <span class="lang-en">EN</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <!-- Mobile Nav Dropdown -->
+    <div class="mobile-nav" id="mobileNav">
+      <button class="nav-btn active" data-tab="home" data-i18n="navHome">首页</button>
+      <button class="nav-btn" data-tab="intro" data-i18n="navIntro">游戏介绍</button>
+      <button class="nav-btn" data-tab="basic" data-i18n="navBasic">基础教程</button>
+      <button class="nav-btn" data-tab="advanced" data-i18n="navAdvanced">进阶教程</button>
+      <button class="nav-btn" data-tab="combos" data-i18n="navCombos">连招教程</button>
+      <button class="nav-btn" data-tab="souljades" data-i18n="navSouljades">魂玉图鉴</button>
+      <button class="nav-btn" data-tab="community" data-i18n="navCommunity">社区</button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- ===== HOME ===== -->
+    <section class="tab-content active" id="tab-home">
+      <!--
+        金乌 & 烛龙 背景图片:
+        把永劫无间周年庆美宣图命名为 hero-bg.jpg 放入 assets/ 文件夹
+        图片会自动作为首页背景显示。没有图片则使用金色/紫色氛围渐变。
+      -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-emblem">☀️⚔️🌙</div>
+          <h1 class="hero-title" data-i18n="heroTitle">永劫无间</h1>
+          <div class="hero-divider"><span></span></div>
+          <p class="hero-subtitle" data-i18n="heroSubtitle">冷兵器大逃杀 · 武侠吃鸡 · 身法博弈</p>
+          <p class="hero-desc" data-i18n="heroDesc">
+            欢迎来到永劫无间教学社区！无论你是刚入门的萌新，还是寻求突破的老手，这里都有你需要的教程和攻略。
+          </p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="switchTab('basic')" data-i18n="heroStartBtn">开始学习</button>
+            <button class="btn-secondary" onclick="switchTab('combos')" data-i18n="heroComboBtn">查看连招</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Cards -->
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="homeFeaturesTitle">游戏特色</h2>
+        <div class="features-grid">
+          <div class="feature-card" onclick="openFeatureDetail('grapple')">
+            <div class="feature-icon">🪝</div>
+            <h3 data-i18n="feature1Title">飞索系统</h3>
+            <p data-i18n="feature1Desc">独特的飞索机制，自由飞檐走壁，实现立体战斗体验，随时攀附任何表面进行高速移动。</p>
+          </div>
+          <div class="feature-card" onclick="openFeatureDetail('combat')">
+            <div class="feature-icon">⚔️</div>
+            <h3 data-i18n="feature2Title">冷兵器格斗</h3>
+            <p data-i18n="feature2Desc">基于"剪刀石头布"的克制系统——普通攻击克制振刀、振刀克制蓄力攻击、蓄力攻击克制普通攻击。</p>
+          </div>
+          <div class="feature-card" onclick="openFeatureDetail('heroes')">
+            <div class="feature-icon">🦸</div>
+            <h3 data-i18n="feature3Title">独特英雄</h3>
+            <p data-i18n="feature3Desc">每位英雄拥有独特的技能和大招，季沧海的火、宁红夜的雷、迦南的隐身，各有千秋。</p>
+          </div>
+          <div class="feature-card" onclick="openFeatureDetail('battle')">
+            <div class="feature-icon">🏆</div>
+            <h3 data-i18n="feature4Title">60人吃鸡</h3>
+            <p data-i18n="feature4Desc">60名玩家同场竞技，在广阔的聚窟洲地图上搜集装备、击败对手，成为最后的幸存者。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Nav -->
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="homeQuickNav">快速入门</h2>
+        <div class="quick-nav-grid">
+          <div class="quick-nav-card" onclick="switchTab('intro')">
+            <span class="quick-nav-icon">📖</span>
+            <span data-i18n="quickNavIntro">了解游戏</span>
+          </div>
+          <div class="quick-nav-card" onclick="switchTab('basic')">
+            <span class="quick-nav-icon">🎓</span>
+            <span data-i18n="quickNavBasic">基础教学</span>
+          </div>
+          <div class="quick-nav-card" onclick="switchTab('advanced')">
+            <span class="quick-nav-icon">🔥</span>
+            <span data-i18n="quickNavAdvanced">进阶技巧</span>
+          </div>
+          <div class="quick-nav-card" onclick="switchTab('combos')">
+            <span class="quick-nav-icon">💥</span>
+            <span data-i18n="quickNavCombos">连招大全</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAME INTRO ===== -->
+    <section class="tab-content" id="tab-intro">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="introTitle">游戏介绍</h2>
+
+        <!-- Game Background -->
+        <div class="intro-block">
+          <h3 data-i18n="introStoryTitle">背景故事</h3>
+          <p data-i18n="introStoryContent">《永劫无间》是由24 Entertainment工作室开发的一款武侠风格的大逃杀游戏。游戏设定在一个被"永劫"之力侵蚀的奇幻世界——聚窟洲。玩家扮演各路英雄，在这片土地上争夺传说中的不朽面具，揭开永劫之谜。游戏融合了冷兵器格斗、飞索移动、英雄技能等元素，创造出了独一无二的"武侠吃鸡"体验。</p>
+        </div>
+
+        <!-- Core Mechanics -->
+        <div class="intro-block">
+          <h3 data-i18n="introMechanicsTitle">核心战斗机制</h3>
+          <div class="mechanics-grid">
+            <div class="mechanic-card">
+              <h4>✊ 普通攻击 → ✋ 振刀 → ⚡ 蓄力攻击 → ✊</h4>
+              <p data-i18n="mechanicRPS">剪刀石头布克制：普通攻击克制振刀（振刀时被打断），振刀克制蓄力攻击（可以弹反蓄力），蓄力攻击克制普通攻击（霸体不会被普攻打断）。掌握这个三角克制是游戏的核心。</p>
+            </div>
+            <div class="mechanic-card">
+              <h4>🪝 飞索 (Grappling Hook)</h4>
+              <p data-i18n="mechanicGrapple">飞索是游戏的核心移动工具，可以瞄准任何表面发射飞索进行高速位移。战斗中也可使用飞索进行追击或逃跑，空中的飞索攻击还有额外伤害加成。</p>
+            </div>
+            <div class="mechanic-card">
+              <h4>💎 魂玉 (Souljade)</h4>
+              <p data-i18n="mechanicSouljade">魂玉是游戏中可以拾取的装备道具，分为武器魂玉和防具魂玉。武器魂玉可以改变武器的招式或增加特殊效果，防具魂玉提供额外属性加成。合理搭配魂玉是制胜关键。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapons -->
+        <div class="intro-block">
+          <h3 data-i18n="introWeaponsTitle">武器类型</h3>
+          <div class="weapons-grid" id="weaponsGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Heroes -->
+        <div class="intro-block">
+          <h3 data-i18n="introHeroesTitle">英雄角色</h3>
+          <div class="heroes-grid" id="heroesGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BASIC TUTORIALS ===== -->
+    <section class="tab-content" id="tab-basic">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="basicTitle">基础教程</h2>
+        <p class="section-subtitle" data-i18n="basicSubtitle">掌握这些基础操作，迈出成为高手的第一步</p>
+        <div class="tutorials-list" id="basicTutorialsList">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ADVANCED TUTORIALS ===== -->
+    <section class="tab-content" id="tab-advanced">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="advancedTitle">进阶教程</h2>
+        <p class="section-subtitle" data-i18n="advancedSubtitle">深入理解战斗系统，提升你的实力上限</p>
+        <div class="tutorials-list" id="advancedTutorialsList">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMBO TUTORIALS ===== -->
+    <section class="tab-content" id="tab-combos">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="combosTitle">连招教程</h2>
+        <p class="section-subtitle" data-i18n="combosSubtitle">从简单到复杂，英雄连招 + 武器连招全覆盖</p>
+
+        <!-- Combo Category Sub-Tabs -->
+        <div class="combo-category-tabs" id="comboCategoryTabs">
+          <button class="combo-cat-btn active" data-category="hero" data-i18n="comboCatHero">🦸 英雄连招</button>
+          <button class="combo-cat-btn" data-category="weapon" data-i18n="comboCatWeapon">⚔️ 武器连招</button>
+          <button class="combo-cat-btn" data-category="advanced" data-i18n="comboCatAdvanced">🔥 进阶连招</button>
+        </div>
+
+        <!-- Hero Filter (only visible for hero category) -->
+        <div class="combo-filter" id="comboFilter">
+          <button class="filter-btn active" data-hero="all" data-i18n="comboFilterAll">全部</button>
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="combos-grid" id="combosGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMMUNITY ===== -->
+    <!-- ===== SOULJADES 魂玉图鉴 ===== -->
+    <section class="tab-content" id="tab-souljades">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="souljadesTitle">魂玉图鉴</h2>
+        <p class="section-subtitle" data-i18n="souljadesSubtitle">S20赛季全魂玉一览，含属性魂玉、通用魂玉、武器专属魂玉</p>
+
+        <!-- Souljade Category Tabs -->
+        <div class="combo-category-tabs" id="souljadeCategoryTabs">
+          <button class="combo-cat-btn active" data-sjcat="weapon" data-i18n="sjCatWeapon">⚔️ 武器魂玉</button>
+          <button class="combo-cat-btn" data-sjcat="general" data-i18n="sjCatGeneral">🔮 通用魂玉</button>
+          <button class="combo-cat-btn" data-sjcat="stat" data-i18n="sjCatStat">📊 属性魂玉</button>
+        </div>
+
+        <!-- Weapon filter (for weapon category) -->
+        <div class="combo-filter hidden" id="souljadeWeaponFilter">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="souljades-grid" id="souljadesGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-content" id="tab-community">
+      <div class="section-container">
+        <h2 class="section-title" data-i18n="communityTitle">玩家社区</h2>
+        <p class="section-subtitle" data-i18n="communitySubtitle">分享你的经验，向大神请教，一起进步</p>
+
+        <!-- Hot Topics -->
+        <div class="community-block">
+          <h3 data-i18n="communityHotTopics">🔥 热门讨论话题</h3>
+          <div class="topics-grid" id="topicsGrid">
+            <div class="topic-card">
+              <div class="topic-tag"># 新手入门</div>
+              <p data-i18n="topic1">刚玩三天，有什么推荐的英雄和武器搭配？</p>
+              <span class="topic-replies">42 回复</span>
+            </div>
+            <div class="topic-card">
+              <div class="topic-tag"># 连招讨论</div>
+              <p data-i18n="topic2">季沧海的无限连到底怎么打？求详细教学</p>
+              <span class="topic-replies">128 回复</span>
+            </div>
+            <div class="topic-card">
+              <div class="topic-tag"># 武器评测</div>
+              <p data-i18n="topic3">当前版本最强武器是哪个？太刀 vs 阔刀深度对比</p>
+              <span class="topic-replies">89 回复</span>
+            </div>
+            <div class="topic-card">
+              <div class="topic-tag"># 赛事讨论</div>
+              <p data-i18n="topic4">永劫无间世界赛观赛指南，职业选手的操作有多离谱</p>
+              <span class="topic-replies">256 回复</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message Board -->
+        <div class="community-block">
+          <h3 data-i18n="communityBoard">💬 留言板</h3>
+          <div class="message-form">
+            <input type="text" class="msg-input" id="msgName" data-i18n-placeholder="msgNamePlaceholder" placeholder="你的昵称 / Your Name" maxlength="30">
+            <textarea class="msg-textarea" id="msgContent" data-i18n-placeholder="msgContentPlaceholder" placeholder="分享你的技巧或提问... / Share tips or ask questions..." maxlength="500" rows="3"></textarea>
+            <button class="btn-primary" id="msgSubmit" data-i18n="msgSubmit">发布留言</button>
+          </div>
+          <div class="messages-list" id="messagesList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== HERO DETAIL MODAL ===== -->
+  <div class="hero-modal-overlay" id="heroModalOverlay">
+    <div class="hero-modal" id="heroModal">
+      <button class="hero-modal-close" id="heroModalClose">&times;</button>
+      <div class="hero-modal-content" id="heroModalContent">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p data-i18n="footerText">永劫无间教学社区 © 2026 — 为爱发电，仅供学习交流</p>
+      <p class="footer-disclaimer" data-i18n="footerDisclaimer">本站为玩家自发创建的教程社区，与网易/24 Entertainment工作室无关联</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

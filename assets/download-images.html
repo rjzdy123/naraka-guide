@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>永劫无间图片下载器</title>
+<style>
+  body { font-family: 'Microsoft YaHei',sans-serif; background:#0a0a0f; color:#e8e4e0; padding:40px; max-width:900px; margin:0 auto; }
+  h1 { color:#c9a96e; text-align:center; }
+  .section { background:#181820; border:1px solid #2a2a3a; border-radius:10px; padding:24px; margin:20px 0; }
+  button { padding:12px 28px; background:linear-gradient(135deg,#c9a96e,#d4b87a); color:#0a0a0f; border:none; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer; margin:8px; }
+  button:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,169,110,0.4); }
+  .status { margin-top:12px; padding:10px; border-radius:6px; font-size:14px; }
+  .success { background:rgba(39,174,96,0.15); color:#27ae60; }
+  .error { background:rgba(231,76,60,0.15); color:#e74c3c; }
+  .info { background:rgba(52,152,219,0.1); color:#3498db; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:16px; }
+  .card { background:#111118; border:1px solid #2a2a3a; border-radius:8px; padding:12px; text-align:center; }
+  .card img { width:100%; height:180px; object-fit:cover; border-radius:4px; background:#1a1a25; }
+  .card .name { margin-top:6px; font-size:13px; color:#c9a96e; }
+  input { width:100%; padding:10px; background:#111118; border:1px solid #2a2a3a; color:#e8e4e0; border-radius:6px; margin:8px 0; font-size:14px; }
+  a { color:#3498db; word-break:break-all; font-size:13px; }
+</style>
+</head>
+<body>
+
+<h1>🎮 永劫无间 图片下载器</h1>
+<p style="text-align:center;color:#888;">在下方输入图片URL，点击下载即可保存到本地</p>
+
+<!-- 背景壁纸 -->
+<div class="section">
+  <h3>🖼️ 首页背景壁纸</h3>
+  <p style="color:#888;font-size:14px;">建议 1920×1080 或更高分辨率。以下是一些可用来源（点击即可在新标签页打开查看，右键保存）：</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
+    <a href="https://www.2dwallpapers.com/51102.html" target="_blank">📥 2DWallpapers</a>
+    <a href="https://wallhaven.cc/search?q=naraka+bladepoint&categories=010&purity=100&sorting=toplist&order=desc" target="_blank">📥 Wallhaven</a>
+    <a href="https://rare-gallery.com/search/naraka+bladepoint/" target="_blank">📥 Rare Gallery</a>
+    <a href="https://wallpapersden.com/naraka-bladepoint-wallpapers/" target="_blank">📥 WallpapersDen</a>
+    <a href="https://moewalls.com/tag/naraka-bladepoint/" target="_blank">📥 MoeWalls</a>
+  </div>
+  <p style="color:#e67e22;font-size:13px;">💡 打开上述网站 → 找到喜欢的壁纸 → 右键"图片另存为" → 保存到 F:\ai\wjwjdwz\assets\hero-bg.jpg</p>
+</div>
+
+<!-- 英雄头像 -->
+<div class="section">
+  <h3>👤 英雄头像截图</h3>
+  <p style="color:#888;font-size:14px;">每个英雄需要一张头像（建议透明背景PNG或正方形JPG）</p>
+  <p style="color:#e67e22;font-size:13px;">💡 方法1：在游戏中按F12截图 → 裁剪出英雄头像 → 保存到对应文件名<br>
+     💡 方法2：访问 <a href="https://www.yjwujian.cn" target="_blank">yjwujian.cn（官网）</a> → 媒体/壁纸板块 → 下载英雄立绘<br>
+     💡 方法3：B站搜索"永劫无间 英雄 立绘" → 截图保存</p>
+
+  <div class="grid" id="heroGrid">
+    <!-- 由JS动态生成 -->
+  </div>
+</div>
+
+<!-- 手动下载 -->
+<div class="section">
+  <h3>🔗 手动输入URL下载</h3>
+  <input type="text" id="urlInput" placeholder="粘贴图片URL...">
+  <input type="text" id="filenameInput" placeholder="文件名 (如: hero-bg.jpg)">
+  <button onclick="manualDownload()">下载</button>
+  <div id="downloadStatus"></div>
+</div>
+
+<script>
+// Generate hero list
+const heroes = [
+  {id:'ning_hongye',name:'宁红夜'},{id:'cui_sanniang',name:'崔三娘'},{id:'temur',name:'特木尔'},
+  {id:'jia_nan',name:'迦南'},{id:'yoto_hime',name:'妖刀姬'},{id:'gu_qinghan',name:'顾清寒'},
+  {id:'tianhai',name:'天海'},{id:'yue_shan',name:'岳山'},{id:'wei_qing',name:'魏轻'},
+  {id:'tarka_ji',name:'季沧海'},{id:'takeda',name:'武田信忠'},{id:'wan_jun',name:'万钧'},
+  {id:'kurumi',name:'土御门胡桃'},{id:'yin_ziping',name:'殷紫萍'},{id:'wu_chen',name:'无尘'},
+  {id:'gan_xuan',name:'甘璇'},{id:'shen_miao',name:'沈妙'},{id:'hadi',name:'哈迪'},
+  {id:'yulinglong',name:'玉玲珑'},{id:'hu_wei',name:'胡为'},{id:'ji_yingying',name:'季莹莹'},
+  {id:'liu_lian',name:'刘炼'},{id:'xila',name:'席拉'},{id:'li_xunhuan',name:'李寻欢'},
+  {id:'zhang_qiling',name:'张起灵'},{id:'lan_meng',name:'蓝梦'}
+];
+
+const grid = document.getElementById('heroGrid');
+heroes.forEach(h => {
+  grid.innerHTML += `
+    <div class="card">
+      <img src="heroes/${h.id}.jpg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22180%22><rect fill=%22%231a1a25%22 width=%22200%22 height=%22180%22/><text fill=%22%23555%22 x=%22100%22 y=%2290%22 text-anchor=%22middle%22 font-size=%2214%22>${h.name}</text></svg>'" alt="${h.name}">
+      <div class="name">${h.id}.jpg — ${h.name}</div>
+    </div>
+  `;
+});
+
+function manualDownload() {
+  const url = document.getElementById('urlInput').value.trim();
+  const filename = document.getElementById('filenameInput').value.trim() || 'download.jpg';
+  const status = document.getElementById('downloadStatus');
+
+  if (!url) { status.innerHTML = '<div class="status error">请输入URL</div>'; return; }
+
+  status.innerHTML = '<div class="status info">正在下载...</div>';
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  status.innerHTML = '<div class="status success">✅ 下载已触发！检查浏览器下载栏。如果没反应，请右键链接选择"另存为"。</div>';
+}
+</script>
+
+</body>
+</html>
