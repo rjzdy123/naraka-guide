@@ -48,7 +48,7 @@ function applyLanguage() {
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (key) el.textContent = t(key);
+    if (key) el.innerHTML = t(key);
   });
 
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
