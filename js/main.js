@@ -4,7 +4,9 @@
    ============================================================ */
 
 // --- State ---
-let currentLang = localStorage.getItem('naraka-lang') || 'zh';
+let currentLang;
+try { currentLang = localStorage.getItem('naraka-lang') || 'zh'; }
+catch { currentLang = 'zh'; }
 let currentTab = 'home';
 let comboFilterHero = 'all';
 let comboCategory = 'hero'; // 'hero' | 'weapon' | 'advanced'
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- Language ---
 function switchLanguage() {
   currentLang = currentLang === 'zh' ? 'en' : 'zh';
-  localStorage.setItem('naraka-lang', currentLang);
+  try { localStorage.setItem('naraka-lang', currentLang); } catch {}
   applyLanguage();
   updateLangToggleUI();
   renderDynamicContent();
@@ -827,7 +829,7 @@ function getMessages() {
 }
 
 function saveMessages(messages) {
-  localStorage.setItem('naraka-messages', JSON.stringify(messages));
+  try { localStorage.setItem('naraka-messages', JSON.stringify(messages)); } catch {}
 }
 
 function addMessage() {

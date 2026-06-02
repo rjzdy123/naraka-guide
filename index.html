@@ -5,10 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="siteTitle">永劫无间教学社区 - NARAKA Teaching Community</title>
   <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts: Noto Serif SC for Chinese calligraphy feel -->
+  <!-- Google Fonts: loaded asynchronously to avoid blocking page render -->
+  <!-- Fallback to system fonts if Google Fonts fails to load (e.g. blocked in China) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" onload="this.rel='stylesheet'" media="all">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Fallback: if Google Fonts loaded, add class for progressive enhancement -->
+  <script>
+    (function() {
+      var el = document.querySelector('link[rel="preload"][as="style"][href*="fonts.googleapis.com"]');
+      if (el) {
+        el.addEventListener('load', function() { document.documentElement.classList.add('fonts-loaded'); });
+        el.addEventListener('error', function() { document.documentElement.classList.add('fonts-failed'); });
+        // If not loaded after 5 seconds, assume failure
+        setTimeout(function() {
+          if (!document.documentElement.classList.contains('fonts-loaded')) {
+            document.documentElement.classList.add('fonts-failed');
+          }
+        }, 5000);
+      }
+    })();
+  </script>
 </head>
 <body>
   <!-- ===== HEADER / NAVIGATION ===== -->

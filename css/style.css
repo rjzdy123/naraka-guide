@@ -1532,6 +1532,11 @@ body {
 }
 
 /* --- Responsive --- */
+/* Fix: iOS Safari doesn't support background-attachment: fixed properly */
+@supports (-webkit-touch-callout: none) {
+  #tab-home { background-attachment: scroll; }
+}
+
 @media (max-width: 900px) {
   .nav { display: none; }
   .mobile-menu-btn { display: block; }
