@@ -29,8 +29,8 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --transition: 0.25s ease;
-  --font-serif: 'Noto Serif SC', 'SimSun', 'STSong', serif;
-  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-serif: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'STSong', 'SimSun', serif;
+  --font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   --max-width: 1200px;
   --header-height: 64px;
 }
